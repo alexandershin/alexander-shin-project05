@@ -137,8 +137,7 @@ class App extends Component {
         // key={}
         title={this.state.album.name}
         artist={this.state.album.artist}
-        // test={this.state.album.image[this.state.album.image.length - 1]['size']}
-        // src={this.state.album.image[3]['#text']}
+        src={this.state.album.image[3]['#text']}
         url={this.state.album.url}
         />
 
