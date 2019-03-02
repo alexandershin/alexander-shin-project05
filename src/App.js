@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import MovieResults from './MovieResults.js';
+import MusicResults from './MusicResults.js';
 
 
 class App extends Component {
@@ -8,6 +10,7 @@ class App extends Component {
     super()
     this.state = {
       movie: {},
+      album: {},
       isLoading: true,
       userInput: ''
     }
@@ -15,7 +18,7 @@ class App extends Component {
 
   handleChange = (event) => {
     // event is change in input, target is input, value is what has been typed in input
-    console.log(event.target.name);
+    // console.log(event.target.name);
     // the argument passed to this function is the event ( a change in the input)
     // we set state using that input's name and value
     // (this makes the function reusable)
@@ -29,9 +32,7 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // console.log(this.state.userInput);
-    // reset the state so that the input is cleared out
     this.getMovies();
-
     this.setState({
       userInput: ''
     })
@@ -58,17 +59,17 @@ class App extends Component {
         movie: topMovie,
         isLoading: false
       }, () => {
-        console.log('here')
-        this.getSongs()
+        // console.log('here')
+        this.getAlbums()
       }
-    )}).catch(error => {
-      console.log(error);
+    )}).catch(err => {
+      console.log(err);
     })
   }
   
 
   // Calling the Music API
-  getSongs = () => {
+  getAlbums = () => {
     axios({
       method: 'GET',
       url: 'http://ws.audioscrobbler.com/2.0',
@@ -79,13 +80,13 @@ class App extends Component {
         method: 'album.search',
         album: this.state.movie.original_title
       }
-    }).then(response => {
-      console.log(response);
-      // this.setState({movies: response});
-      // console.log(response);
-      // this.setState({
-      //   movies: response,
-      //   isLoading: false
+    }).then(res => {
+      // console.log(res);
+      const albumList = res.data.results.albummatches.album[0];
+      // console.log(albumList);
+      this.setState({
+        album: albumList
+      })
     })
   }
 
@@ -123,12 +124,23 @@ class App extends Component {
             type="text"
             placeholder="Movie title"
             onChange={this.handleChange}
-            // the name attribute here is used to make the handleChange method reusable
             name="userInput"
-            // we're binding the value of this input to the value that exists for it in state
             value={this.state.userInput} />
           <button type="submit">Search your movie</button>
         </form>
+      <MovieResults 
+        // key={}
+        title={this.state.movie.original_title}
+        src={this.state.movie.poster_path} 
+      />
+      <MusicResults
+        // key={}
+        title={this.state.album.name}
+        artist={this.state.album.artist}
+        // test={this.state.album.image[this.state.album.image.length - 1]['size']}
+        // src={this.state.album.image[3]['#text']}
+        url={this.state.album.url}
+        />
 
       </div>
     );
