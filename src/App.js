@@ -10,7 +10,8 @@ class App extends Component {
     super()
     this.state = {
       movie: {},
-      album: {},
+      album: [],
+      albumSongs: [],
       isLoading: true,
       userInput: ''
     }
@@ -54,7 +55,7 @@ class App extends Component {
     }).then(res => {
       // console.log(response);
       const topMovie = res.data.results[0];
-      console.log(topMovie);
+      // console.log(topMovie);
       this.setState({
         movie: topMovie,
         isLoading: false
@@ -72,7 +73,7 @@ class App extends Component {
   getAlbums = () => {
     axios({
       method: 'GET',
-      url: 'http://ws.audioscrobbler.com/2.0',
+      url: 'https://ws.audioscrobbler.com/2.0',
       dataResponse: 'json',
       params: {
         api_key: '57ee3318536b23ee81d6b27e36997cde',
@@ -83,9 +84,45 @@ class App extends Component {
     }).then(res => {
       // console.log(res);
       const albumList = res.data.results.albummatches.album[0];
+      // const albumList = res.data.results.albummatches.album.map(value => {
+      //   return albumList = value.splice(0,5)
+      // });
       // console.log(albumList);
       this.setState({
-        album: albumList
+        album: albumList,
+        isLoading: false
+      }, () => {
+        this.getAlbumSongs()
+        // console.log('here')
+      }
+      )
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+  //     })
+  //   })
+  // }
+
+  // Calling the Music API for Song list
+  getAlbumSongs = () => {
+    axios({
+      method: 'GET',
+      url: 'https://ws.audioscrobbler.com/2.0',
+      dataResponse: 'json',
+      params: {
+        api_key: '57ee3318536b23ee81d6b27e36997cde',
+        format: 'json',
+        method: 'album.getInfo',
+        album: this.state.album.name,
+        artist: this.state.album.artist
+      }
+    }).then(res => {
+      console.log(res);
+      const albumSongsResults = res.data.album.tracks.track;
+      console.log(albumSongsResults);
+      this.setState({
+        albumSongs: albumSongsResults
       })
     })
   }
@@ -137,9 +174,19 @@ class App extends Component {
         // key={}
         title={this.state.album.name}
         artist={this.state.album.artist}
-        src={this.state.album.image[3]['#text']}
+        // src={this.state.album.image[3]['#text']}
+        src={this.state.album}
         url={this.state.album.url}
+        songs={this.state.albumSongs}
         />
+      {/* {
+        this.state.albumSongs.tracks.track.map((songs) => {
+          return (
+            <MusicResults songs={songs} />
+          )
+        })
+        } */}
+        {/* // songs={this.state.albumSongs.tracks.track} */}
 
       </div>
     );
