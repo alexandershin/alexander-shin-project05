@@ -19,21 +19,22 @@
 import React, { Component } from 'react'
 
 class MusicResults extends Component {
+  // checks to see if the image exists. If it does return the album image
   renderSrc = () => {
     if (this.props.src.image) {
       return this.props.src.image[3]["#text"]
     }
   }
 
+  // checks to see if the album tracks exist. If so print the album track names
   renderSongList = () => {
     if (this.props.songs.tracks) {
-      const topSongsList = this.props.songs.tracks.track.map(songs => {
+      const topSongList = this.props.songs.tracks.track.map(songs => {
+      // const topSongList = this.props.albumSongs.map(songs => {
         return (
-        `${songs.name} ${songs.url}`
-        //  this.props(songs)
+        <li> ${songs.name} ${songs.url} </li>
         )
       })
-      console.log(topSongsList);
     }
   }
 
@@ -45,7 +46,7 @@ class MusicResults extends Component {
         <img src={this.renderSrc()} alt={`Poster for ${this.props.title}.`} />
         <a href={this.props.url}>Link to Music</a>
         <ul>
-          <li>{this.renderSongList()}</li>
+          {this.renderSongList()}
         </ul>
       </div>
     )

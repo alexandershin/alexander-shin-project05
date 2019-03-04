@@ -20,9 +20,6 @@ class App extends Component {
   handleChange = (event) => {
     // event is change in input, target is input, value is what has been typed in input
     // console.log(event.target.name);
-    // the argument passed to this function is the event ( a change in the input)
-    // we set state using that input's name and value
-    // (this makes the function reusable)
     this.setState({
       // userInput: event.target.value
       // if setting dynamic input you need to use [] on left
@@ -128,30 +125,6 @@ class App extends Component {
   }
 
 
-  // getBooks = () => {
-  //   axios ({
-  //     method: 'GET',
-  //     url: 'https://www.goodreads.com/search/index.xml',
-  //     dataResponse: 'xml',
-  //     params: {
-  //       key: 'u8UDpsytecKFoht1TJgA1Q',
-  //       format: 'xml',
-  //       language: 'en-US',
-  //       q: this.state.movies
-  //     }
-  //   }).then(response => {
-  //     console.log(response);
-  //     response = response.data.results;
-  //     console.log(response);
-  //     // this.setState({
-  //     //   movies: response,
-  //     //   isLoading: false
-  //   })
-  // }
-
-
-
-
   render() {
     return (
       <div className="App">
@@ -174,20 +147,10 @@ class App extends Component {
         // key={}
         title={this.state.album.name}
         artist={this.state.album.artist}
-        // src={this.state.album.image[3]['#text']}
         src={this.state.album}
         url={this.state.album.url}
         songs={this.state.albumSongs}
         />
-      {/* {
-        this.state.albumSongs.tracks.track.map((songs) => {
-          return (
-            <MusicResults songs={songs} />
-          )
-        })
-        } */}
-        {/* // songs={this.state.albumSongs.tracks.track} */}
-
       </div>
     );
   }
