@@ -116,7 +116,7 @@ class App extends Component {
       }
     }).then(res => {
       console.log(res);
-      const albumSongsResults = res.data.album.tracks.track;
+      const albumSongsResults = res.data.album.tracks;
       console.log(albumSongsResults);
       this.setState({
         albumSongs: albumSongsResults

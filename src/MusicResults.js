@@ -1,21 +1,3 @@
-// import React from 'react';
-
-
-// const MusicResults = (props) => {
-//   // console.log(props);
-//   return(
-//     <div>
-//       <h2>{props.title}</h2>
-//       <p>{props.artist}</p>
-//       <img src={props.src} alt={`Poster for ${props.title}.`} />
-//       <a href={props.url}>Link to Music</a>
-//     </div>
-//   );
-// };
-
-// export default MusicResults;
-
-  
 import React, { Component } from 'react'
 
 class MusicResults extends Component {
@@ -26,28 +8,45 @@ class MusicResults extends Component {
     }
   }
 
+  // renderSongList = () => {
+    //   if (this.props.songs.tracks) {
+      //     const topSongList = this.props.songs.tracks.track.map(songs => {
+        //     // const topSongList = this.props.albumSongs.map(songs => {
+          //       return (
+            //       <li> ${songs.name} ${songs.url} </li>
+  //       )
+  //     })
+  //   }
+  // }
+  
   // checks to see if the album tracks exist. If so print the album track names
   renderSongList = () => {
-    if (this.props.songs.tracks) {
-      const topSongList = this.props.songs.tracks.track.map(songs => {
-      // const topSongList = this.props.albumSongs.map(songs => {
+    if (this.props.songs.track) {
+      return this.props.songs.track.map((track, i) => {
         return (
-        <li> ${songs.name} ${songs.url} </li>
+          <div>
+            <li id key={i}><a href={track.url}>{track.name}</a></li>
+          </div>
         )
       })
     }
   }
 
   render() {
+      if (!this.props.title) {
+        return null;
+      }
+
     return (
       <div>
         <h2>{this.props.title}</h2>
         <p>{this.props.artist}</p>
         <img src={this.renderSrc()} alt={`Poster for ${this.props.title}.`} />
         <a href={this.props.url}>Link to Music</a>
-        <ul>
+        <h2>Tracklist</h2>
+        <ol>
           {this.renderSongList()}
-        </ul>
+        </ol>
       </div>
     )
   }
