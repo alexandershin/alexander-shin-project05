@@ -77,16 +77,11 @@ class App extends Component {
       }
     }).then(res => {
       const albumList = res.data.results.albummatches.album[0];
-      // const albumList = res.data.results.albummatches.album.map(value => {
-      //   return albumList = value.splice(0,5)
-      // });
-      // console.log(albumList);
       this.setState({
         album: albumList,
         isLoading: false
       }, () => {
         this.getAlbumSongs()
-        // console.log('here')
       }
       )
     }).catch(err => {
@@ -140,7 +135,7 @@ class App extends Component {
         </header>
 
         <div className="Wrapper">
-          <div className="Title" id="topResults">
+          <div className="Title">
               <h2>{this.state.album.name}</h2>
               <p>{this.state.album.artist}</p>
           </div>

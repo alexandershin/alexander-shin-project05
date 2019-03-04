@@ -1,12 +1,9 @@
 .App {
-  /* text-align: center; */
-  /* font-family: 'Fjalla One', sans-serif; */
-  /* font-family: 'Cormorant Garamond', serif; */
+
 }
 
 html {
   font-size: 125%;
-  /* font-family: 'Fjalla One', sans-serif; */
 }
 
 header {
@@ -20,13 +17,10 @@ header {
 .Container  {
   display: flex;
   flex-flow: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   margin: 0 auto; 
   width: 75%;
   padding: 200px 50px;
   background-color: rgba(255, 255, 255, 0.8);
-  /* border: 1px solid red; */
   text-align: center;
 
 }
@@ -74,7 +68,6 @@ a {
 }
 
 a:hover {
-  color: darkgreen;
   text-decoration: underline;
 }
 
@@ -106,15 +99,10 @@ li a:visited {
   font-family: 'Fjalla One', sans-serif;
 }
 
-
 .MovieContainer {
-  /* display: flex; */
   width: 50%;
   padding-top: 50px;
-}
-
-.MovieContainer h2, .MusicContainer h2 {
-  /* text-align: center; */
+  padding-bottom: 50px;
 }
 
 .MovieContainer img {
@@ -123,12 +111,10 @@ li a:visited {
 }
 
 .MusicContainer {
-  /* display: flex; */
   width: 50%;
 }
 
 .MusicContainer img {
-  /* width: 25%; */
   margin: 0 auto;
 }
 
@@ -158,11 +144,9 @@ li a:visited {
   bottom: 0;
   left: 0;
   padding: 100px;
-  /* padding-top: 50px; */
 }
 
 .Play:hover {
-  /* transition: all 0.3s; */
   background-color: rgba(255,255,255,0.6);
 }
 
