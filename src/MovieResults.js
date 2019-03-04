@@ -8,11 +8,9 @@ const MovieResults = (props) => {
   }
 
   return(
-    <div>
-      <h2>{props.title}</h2>
-      <img src={`https://image.tmdb.org/t/p/w500${props.src}`} alt={`Poster for ${props.title}.`} />
-      <h2>{props.albumTitle}</h2>
-    </div>
+      <div className="MovieContainer">
+        <img src={`https://image.tmdb.org/t/p/w500${props.src}`} alt={`Poster for ${props.title}.`} />
+      </div>
   );
 };
 

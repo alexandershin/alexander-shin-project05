@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Play from './assets/play.png';
 
 class MusicResults extends Component {
   // checks to see if the image exists. If it does return the album image
@@ -7,25 +8,14 @@ class MusicResults extends Component {
       return this.props.src.image[3]["#text"]
     }
   }
-
-  // renderSongList = () => {
-    //   if (this.props.songs.tracks) {
-      //     const topSongList = this.props.songs.tracks.track.map(songs => {
-        //     // const topSongList = this.props.albumSongs.map(songs => {
-          //       return (
-            //       <li> ${songs.name} ${songs.url} </li>
-  //       )
-  //     })
-  //   }
-  // }
   
   // checks to see if the album tracks exist. If so print the album track names
   renderSongList = () => {
     if (this.props.songs.track) {
-      return this.props.songs.track.map((track, i) => {
+      return this.props.songs.track.map(track => {
         return (
           <div>
-            <li id key={i}><a href={track.url}>{track.name}</a></li>
+            <li key={track['@attr'].rank}><a href={track.url}>{track.name}</a></li>
           </div>
         )
       })
@@ -38,16 +28,22 @@ class MusicResults extends Component {
       }
 
     return (
-      <div>
-        <h2>{this.props.title}</h2>
-        <p>{this.props.artist}</p>
-        <img src={this.renderSrc()} alt={`Poster for ${this.props.title}.`} />
-        <a href={this.props.url}>Link to Music</a>
-        <h2>Tracklist</h2>
-        <ol>
-          {this.renderSongList()}
-        </ol>
-      </div>
+        <div className="MusicContainer">
+          <div className="MusicImageContainer">
+            <div className="MusicBox1">
+              <a href={this.props.url} className="MusicLink">
+                <img src={this.renderSrc()} alt={`Poster for ${this.props.title}.`} />
+                <img src={Play} alt="Play button image" className="Play"/>
+              </a>
+            </div>
+            <div className="MusicBox2">
+              <h2>Tracklist</h2>
+              <ol>
+                {this.renderSongList()}
+              </ol>
+            </div>
+          </div>
+        </div>
     )
   }
 }

@@ -1,33 +1,178 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  /* font-family: 'Fjalla One', sans-serif; */
+  /* font-family: 'Cormorant Garamond', serif; */
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+html {
+  font-size: 125%;
+  /* font-family: 'Fjalla One', sans-serif; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
+  background: url(assets/rivendell.jpg) no-repeat center;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.Container  {
+  display: flex;
+  flex-flow: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin: 0 auto; 
+  width: 75%;
+  padding: 200px 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  /* border: 1px solid red; */
+  text-align: center;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Container h1 {
+  text-transform: uppercase; 
+  color: rgba(24, 65, 54, 0.979);
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 4rem;
 }
+
+form {
+  padding-top: 20px;
+}
+
+input {
+  padding: 25px 100px;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: darkgreen;
+  text-decoration: underline;
+}
+
+li a:visited {
+  text-decoration: none;
+  display: none;
+  color: black;
+}
+
+.Wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.Title {
+  text-align: center;
+  font-family: 'Fjalla One', sans-serif;
+  padding-top: 50px;
+}
+
+.Results {
+  display: flex;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+}
+
+.Results h2 {
+  font-family: 'Fjalla One', sans-serif;
+}
+
+
+.MovieContainer {
+  /* display: flex; */
+  width: 50%;
+  padding-top: 50px;
+}
+
+.MovieContainer h2, .MusicContainer h2 {
+  /* text-align: center; */
+}
+
+.MovieContainer img {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.MusicContainer {
+  /* display: flex; */
+  width: 50%;
+}
+
+.MusicContainer img {
+  /* width: 25%; */
+  margin: 0 auto;
+}
+
+.MusicImageContainer {
+  display: flex;
+  padding-top: 50px;
+}
+
+.MusicBox1 {
+  position: relative;
+}
+
+.MusicBox2 {
+  padding-left: 40px;
+}
+
+.MusicBox2 h2 {
+  line-height: 1;
+  padding-bottom: 10px;
+}
+
+.Play {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 100px;
+  /* padding-top: 50px; */
+}
+
+.Play:hover {
+  /* transition: all 0.3s; */
+  background-color: rgba(255,255,255,0.6);
+}
+
+a:hover .Play {
+  display: block;
+}
+
+.MusicBox1, .MusicBox2 {
+  width: 50%;
+
+}
+
+

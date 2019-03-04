@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import './setup.css';
 import './App.css';
 import axios from 'axios';
 import MovieResults from './MovieResults.js';
 import MusicResults from './MusicResults.js';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 
 class App extends Component {
@@ -13,26 +15,24 @@ class App extends Component {
       album: [],
       albumSongs: [],
       isLoading: true,
-      userInput: ''
+      userInput: '',
+      showResults: false
     }
   }
 
   handleChange = (event) => {
-    // event is change in input, target is input, value is what has been typed in input
-    // console.log(event.target.name);
+    // when onChange occurs, target the input's value
     this.setState({
-      // userInput: event.target.value
-      // if setting dynamic input you need to use [] on left
       [event.target.name]: event.target.value
     })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(this.state.userInput);
     this.getMovies();
     this.setState({
-      userInput: ''
+      userInput: '',
+      showResults: true
     })
   }
 
@@ -50,14 +50,11 @@ class App extends Component {
         query: this.state.userInput
       }
     }).then(res => {
-      // console.log(response);
       const topMovie = res.data.results[0];
-      // console.log(topMovie);
       this.setState({
         movie: topMovie,
         isLoading: false
       }, () => {
-        // console.log('here')
         this.getAlbums()
       }
     )}).catch(err => {
@@ -79,7 +76,6 @@ class App extends Component {
         album: this.state.movie.original_title
       }
     }).then(res => {
-      // console.log(res);
       const albumList = res.data.results.albummatches.album[0];
       // const albumList = res.data.results.albummatches.album.map(value => {
       //   return albumList = value.splice(0,5)
@@ -97,9 +93,7 @@ class App extends Component {
       console.log(err);
     })
   }
-  //     })
-  //   })
-  // }
+ 
 
   // Calling the Music API for Song list
   getAlbumSongs = () => {
@@ -128,29 +122,42 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>Your Movie!</h1>
-        <form action="submit" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Movie title"
-            onChange={this.handleChange}
-            name="userInput"
-            value={this.state.userInput} />
-          <button type="submit">Search your movie</button>
-        </form>
-      <MovieResults 
-        // key={}
-        title={this.state.movie.original_title}
-        src={this.state.movie.poster_path} 
-      />
-      <MusicResults
-        // key={}
-        title={this.state.album.name}
-        artist={this.state.album.artist}
-        src={this.state.album}
-        url={this.state.album.url}
-        songs={this.state.albumSongs}
-        />
+        <header>
+          <div className="Wrapper">
+            <div className="Container">
+              <h1>Find An Epic Soundtrack</h1>
+              <form action="submit" onSubmit={this.handleSubmit}href="#topResults">
+                <input
+                  type="text"
+                  placeholder="Type a movie"
+                  onChange={this.handleChange}
+                  name="userInput"
+                  value={this.state.userInput} 
+                />
+              </form>
+            </div>
+          </div>
+        </header>
+
+        <div className="Wrapper">
+          <div className="Title" id="topResults">
+              <h2>{this.state.album.name}</h2>
+              <p>{this.state.album.artist}</p>
+          </div>
+          <div className="Results">
+            <MovieResults 
+              title={this.state.movie.original_title}
+              src={this.state.movie.poster_path} 
+            />
+            <MusicResults
+              title={this.state.album.name}
+              artist={this.state.album.artist}
+              src={this.state.album}
+              url={this.state.album.url}
+              songs={this.state.albumSongs}
+              />
+          </div>
+        </div>
       </div>
     );
   }
